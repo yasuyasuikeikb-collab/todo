@@ -12,7 +12,8 @@
   </div>
 
   <div class="todo__content">
-    <form class="create-form">
+    <form class="create-form" action="/todos" method="post">
+      @csrf
       <div class="create-form__item">
         <input class="create-form__item--input" type="text" name="content">
       </div>
@@ -25,7 +26,25 @@
         <tr class="todo-table__row">
           <th class="todo-table__header">Todo</th>
         </tr>
+        @foreach ($todos as $todo)
         <tr class="todo-table__row">
+          <td class="todo-table__item">
+            <form class="update-form">
+              <div class="update-form__item">
+                <input class="update-form__item--input" type="text" name="content" value="{{ $todo->content }}">
+              </div>
+              <div class="update-form__button">
+                <button class="update-form__button--submit" type="submit">更新</button>
+              </div>
+            </form>
+          </td>
+          <td class="todo-table__item">
+            <form class="delete-form">
+              <button class="delete-form__button--submit" type="submit">削除</button>
+            </form>
+          </td>
+        </tr>
+        <!-- <tr class="todo-table__row">
           <td class="todo-table__item">
             <form class="update-form">
               <div class="update-form__item">
@@ -41,24 +60,8 @@
               <button class="delete-form__button--submit" type="submit">削除</button>
             </form>
           </td>
-        </tr>
-        <tr class="todo-table__row">
-          <td class="todo-table__item">
-            <form class="update-form">
-              <div class="update-form__item">
-                <input class="update-form__item--input" type="text" name="content" value="test">
-              </div>
-              <div class="update-form__button">
-                <button class="update-form__button--submit" type="submit">更新</button>
-              </div>
-            </form>
-          </td>
-          <td class="todo-table__item">
-            <form class="delete-form">
-              <button class="delete-form__button--submit" type="submit">削除</button>
-            </form>
-          </td>
-        </tr>
+        </tr> -->
+        @endforeach
       </table>
     </div>
   </div>
