@@ -5,11 +5,23 @@
 @endsection
 
 @section('content')
+  @if (session('success') || $errors->any())
   <div class="todo__alert">
-    <div class="todo__alert--success">
-      Todoを作成しました
-    </div>
+    
+    @if (session('success'))
+      <div class="todo__alert--success">
+        {{ session('success') }}
+      </div>
+    @endif
+
+    @if ($errors->any())
+      <div class="todo__alert--danger">
+        {{ $errors->first('content') }}
+      </div>
+    @endif
+
   </div>
+  @endif
 
   <div class="todo__content">
     <form class="create-form" action="/todos" method="post">
