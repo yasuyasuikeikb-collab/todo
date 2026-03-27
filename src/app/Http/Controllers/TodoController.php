@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use App\Http\Requests\TodoRequest;
+use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -20,4 +21,17 @@ class TodoController extends Controller
       return redirect('/')->with('success', 'Todoを作成しました');
     }
 
+    public function update(TodoRequest $request)
+    {
+        $todo = $request->only(['content']);
+        Todo::find($request->id)->update($todo);
+
+        return redirect('/')->with('success', 'Todoを更新しました');
+    }
+
+    public function destroy(Request $request)
+    {
+        Todo::find($request->id)->delete();
+        return redirect('/')->with('success', 'Todoを削除しました');  
+    }
 }
