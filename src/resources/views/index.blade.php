@@ -129,6 +129,7 @@
             @csrf
 
             <div class="delete-form__button">
+              <input type="hidden" name="id" value="{{ $todo->id }}" />
               <button class="delete-form__button-submit" type="submit">
                 削除
               </button>
