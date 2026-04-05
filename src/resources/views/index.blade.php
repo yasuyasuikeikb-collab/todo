@@ -60,9 +60,10 @@
     <h2>Todo検索</h2>
   </div>
 
-  <form class="search-form" method="get" action="/">
+  <form class="search-form" action="/todos/search" method="get">
+    @csrf
     <div class="search-form__item">
-      <input class="search-form__item-input" type="text" name="keyword" />
+      <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}" />
       <select class="search-form__item-select" name="category_id">
         <option value="">カテゴリ</option>
         @foreach ($categories as $category)
